@@ -18,8 +18,16 @@
         #topContainer{
             width:1000px;
             margin: 0 auto;
-            color:red;
             background:url("a15.png") no-repeat 0px 0px;
+        }
+        #topText{
+            margin-left:20px;
+            overflow:hidden;
+        }
+        p{
+            left:1000px;
+            color:red;
+            position:relative;
         }
         #container{
             width:1200px;
@@ -80,7 +88,9 @@
     <body>
         <div id="top">
             <div id="topContainer">
-                <marquee style="margin-left:20px">[温馨提示]最近有不少违法分子在网上骗人，请大家注意！！！</marquee>
+                <div id="topText"><p id="text">
+                [温馨提示]最近有不少违法分子在网上骗人，请大家注意！！！
+                </p></div>
             </div>
         </div>
         <div id="container">
@@ -105,12 +115,22 @@
         </div>
     </body>
     <script type="text/javascript">
-        var container = document.getElementById("container");
-        var imgs = document.getElementById("imgs");
-        var left = document.getElementById("left");
-        var right = document.getElementById("right");
-        var ul = document.getElementById("ul").children;
-        var i=1;
+    var container = document.getElementById("container");
+    var text = document.getElementById("text");
+    var imgs = document.getElementById("imgs");
+    var left = document.getElementById("left");
+    var right = document.getElementById("right");
+    var ul = document.getElementById("ul").children;
+    var i=1;
+    window.onload = function(){
+        setInterval(function(){
+            var now = parseInt(getStyle(text,"left"));
+            text.style.left = now - 1 + "px";
+            if(now == -400){
+                text.style.left = 1000 + "px";
+            }
+        },30);
+    }
         function pre(){
             i--;
             change();
